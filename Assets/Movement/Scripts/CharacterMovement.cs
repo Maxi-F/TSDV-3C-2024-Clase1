@@ -7,7 +7,6 @@ namespace Movement
     public class CharacterMovement : MonoBehaviour
     {
         public float speed = 1;
-        public Animator animator;
 
         private Vector3 _desiredDirection = new Vector3(0, 0, 0);
         private float _angle;
@@ -26,7 +25,6 @@ namespace Movement
             if(!isWalking)
             {
                 isWalking = true;
-                animator.SetBool("Walk", true);
             }
         }
 
@@ -35,13 +33,17 @@ namespace Movement
             if(_desiredDirection == Vector3.zero && isWalking)
             {
                 isWalking = false;
-                animator.SetBool("Walk", false);
             }
 
             transform.position += (_desiredDirection * (speed * Time.deltaTime));
             _angle = Vector3.SignedAngle(transform.forward, _desiredDirection, Vector3.up);
 
             transform.Rotate(0, _angle * (speed * Time.deltaTime), 0);
+        }
+
+        public bool IsWalking()
+        {
+            return isWalking;
         }
     }
 }
