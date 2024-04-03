@@ -6,44 +6,76 @@ namespace Movement
 {
     public class CharacterMovement : MonoBehaviour
     {
-        public float speed = 1;
+        [SerializeField] private float speed = 1;
+        [SerializeField] private float acceleration = 10;
+        [SerializeField] private float rotationSpeed = 1;
+        [SerializeField] private Rigidbody rigidBody;
 
         private Vector3 _desiredDirection = new Vector3(0, 0, 0);
+        private Vector3 _vectorMovement;
         private float _angle;
         private bool isWalking;
+        private Camera camera;
 
         private void Start()
         {
             isWalking = false;
         }
 
-
-        public void Move(Vector3 vectorMovement)
+        private void OnValidate()
         {
-            _desiredDirection = vectorMovement;
-
-            if(!isWalking)
+            if(rigidBody == null)
             {
-                isWalking = true;
+                rigidBody = GetComponent<Rigidbody>();
             }
         }
 
         private void Update()
         {
-            if(_desiredDirection == Vector3.zero && isWalking)
+            getDirection();
+
+            if (_desiredDirection == Vector3.zero && isWalking)
             {
                 isWalking = false;
             }
 
-            transform.position += (_desiredDirection * (speed * Time.deltaTime));
             _angle = Vector3.SignedAngle(transform.forward, _desiredDirection, Vector3.up);
-
-            transform.Rotate(0, _angle * (speed * Time.deltaTime), 0);
+            transform.Rotate(0, _angle * (rotationSpeed * Time.deltaTime), 0);
         }
 
+        private void FixedUpdate()
+        {
+            var currentVelocity = rigidBody.velocity;
+            currentVelocity.y = 0;
+            var currentSpeed = currentVelocity.magnitude;
+            if(currentSpeed < speed) rigidBody.AddForce(_desiredDirection * acceleration, ForceMode.Force);
+        }
+
+        public void Move(Vector3 vectorMovement)
+        {
+            _vectorMovement = vectorMovement;
+
+            if (!isWalking)
+            {
+                isWalking = true;
+            }
+        }
         public bool IsWalking()
         {
             return isWalking;
+        }
+
+        private void getDirection()
+        {
+            Transform localTransform = transform;
+
+            if (camera != null)
+                localTransform = camera.transform;
+            else
+                camera = Camera.main;
+
+            _desiredDirection = localTransform.TransformDirection(_vectorMovement);
+            _desiredDirection.y = 0;
         }
     }
 }
