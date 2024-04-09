@@ -5,13 +5,18 @@ using UnityEngine;
 
 public class CharacterAnimator : MonoBehaviour
 {
-    public Animator animator;
-    public CharacterMovement movement;
+    [SerializeField] private Animator animator;
+    [SerializeField] private string speedParameter = "speed";
+    [SerializeField] private Rigidbody rigidBody;
+
     private void Update()
     {
-        if (animator && movement)
+        if (animator && rigidBody)
         {
-            animator.SetFloat("speed", movement.CurrentSpeed);
+            var horVelocity = rigidBody.velocity;
+            horVelocity.y = 0;
+            var speed = horVelocity.magnitude;
+            animator.SetFloat(speedParameter, speed);
         }
     }
 }

@@ -15,9 +15,27 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "ToolSelection",
+                    "name": "Jump",
                     "type": "Button",
-                    "id": "27db2626-2b0d-4005-8f20-30032a0b7d8f",
+                    "id": "0f1ca5e8-3b2f-428c-8f6e-1228dd1e36d9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Mouse Camera",
+                    "type": "Value",
+                    "id": "8225c97f-eb3c-43f8-b154-a20e7140da78",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Joystick Camera",
+                    "type": "Button",
+                    "id": "952a957a-3d51-4fb8-914f-0b9aa2ef27bc",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -148,12 +166,67 @@
                 },
                 {
                     "name": "",
-                    "id": "de39bf08-cadc-49d4-9933-b4913ffb7af6",
-                    "path": "<Gamepad>/dpad/down",
+                    "id": "635b1669-ca13-4894-85c4-18e605453f89",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "ToolSelection",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0953dd0b-4232-4540-bbeb-e641cebfacf4",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3919d66e-357a-40a6-880f-9b713e4bc0c8",
+                    "path": "<DualShockGamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fc0aafb4-ca04-4f74-9296-43c08ed6869d",
+                    "path": "<XInputController>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "925b840e-5a97-4d2e-b9ee-c12026888b92",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Mouse Camera",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8762ffaa-77b4-425b-ae44-4e8d652ad2f1",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Joystick Camera",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
